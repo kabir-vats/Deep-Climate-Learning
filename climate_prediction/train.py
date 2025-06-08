@@ -3,14 +3,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 from climate_prediction.loss import AreaWeightedClimateLoss, L1CustomLoss, MSECustomLoss
 import os
 import xarray as xr
 import datetime
 
 
-# FINE TUNING VERSION
 class ClimateEmulationModule(pl.LightningModule):
     def __init__(self, model, output_vars, loss_config, optimizer_config):
         super().__init__()

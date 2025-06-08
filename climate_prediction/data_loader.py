@@ -6,7 +6,7 @@ import math
 import numpy as np
 import xarray as xr
 import dask.array as da
-import pytorch_lightning as pl
+import lightning.pytorch as pl
 import os
 from global_land_mask import globe
 from climate_prediction.util import get_lat_weights, Normalizer
