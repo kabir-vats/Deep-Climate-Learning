@@ -7,7 +7,7 @@ import lightning.pytorch as pl
 from climate_prediction.loss import AreaWeightedClimateLoss, L1CustomLoss, MSECustomLoss
 import os
 import xarray as xr
-import datetime
+from datetime import datetime
 
 
 class ClimateEmulationModule(pl.LightningModule):
