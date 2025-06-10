@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import lightning.pytorch as pl
-from climate_prediction.loss import AreaWeightedClimateLoss, L1CustomLoss, MSECustomLoss
+from climate_prediction.loss import AreaWeightedClimateLoss, L1CustomLoss, MSECustomLoss, WeightedL1CustomLoss
 import os
 import xarray as xr
 from datetime import datetime
@@ -37,6 +37,11 @@ class ClimateEmulationModule(pl.LightningModule):
             )
         elif loss_version == "MSE_Custom":
             self.criterion = MSECustomLoss(
+                var_names=output_vars,
+                train_weights=loss_config.get("train_weights", None),
+            )
+        elif loss_version == "Weighted_L1":
+            self.criterion = WeightedL1CustomLoss(
                 var_names=output_vars,
                 train_weights=loss_config.get("train_weights", None),
             )
