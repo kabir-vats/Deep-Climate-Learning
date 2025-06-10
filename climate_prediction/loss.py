@@ -186,7 +186,7 @@ class MSECustomLoss(nn.Module):
 class WeightedL1CustomLoss(nn.Module):
     def __init__(self, var_names=["tas", "pr"], train_weights=None):
         super().__init__()
-        self.lat = torch.tensor(np.linspace(-90, 90, 48), dtype=torch.float32)
+        self.lat = torch.tensor(np.linspace(-90 + 1, 90 - 1, 48), dtype=torch.float32)
         lat_radians = torch.deg2rad(self.lat)
         weights = torch.cos(lat_radians)  # [H]
         self.register_buffer("lat_weights", weights / weights.sum())
